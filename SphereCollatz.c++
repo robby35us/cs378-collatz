@@ -4,7 +4,6 @@
 // Glenn P. Downing and Robert Reed
 // --------------------------
 
-
 // -------
 // defines
 // -------
@@ -18,8 +17,19 @@
 // --------
 
 #include <cassert> // assert
-#include <iostream> // endl, istream, ostream, cin, cout, ios_base
+#include <iostream> // endl, istream, ostream
 
+//global varible for use throught program
+const int cacheLen = 1000000;
+int _cache[cacheLen];
+
+// -----------------
+// _initialize_cache
+// -----------------
+
+void _initialize_cache() {
+    for(int i = 1; i < cacheLen; ++i)
+        _cache[i] = 0;}
 
 // ------------
 // collatz_read
@@ -32,7 +42,7 @@
 * @param j an int by reference
 * @return true if that succeeds, false otherwise
 */
-bool collatz_read (std::istream& r, int& i, int& j) {
+bool collatz_read (std::istream& r, long int& i, long int& j) {
     r >> i;
     if (!r)
         return false;
@@ -47,20 +57,29 @@ bool collatz_read (std::istream& r, int& i, int& j) {
 
 /**
 * computes the cycle-length for a single value
-* @param n a positive integer
-* @return the cycle length of n
+* @param num a positive integer
+* @return the cycle length of num
 **/
-int _getCycLen(int num) {
+int _getCycLen(long int num) {
    assert(num > 0);
-   int len = 1;
-   while(num > 1) {
-      if(num % 2 == 0)
-         num = num / 2;
+   if(num < cacheLen && _cache[num] > 0)
+      return _cache[num];
+   long int index = num;
+   int cycLen = 1;
+   while(index > 1) {
+      if(index < cacheLen && _cache[index] > 0) {
+         cycLen += _cache[index] - 1;
+         break;}
+      else if(index % 2 == 0)
+         index = index / 2;
       else
-         num = 3 * num + 1;
-      ++len;}
+         index = 3 * index + 1;
+      ++cycLen;
+      assert(index > 0);}
+   if(num < cacheLen && _cache[num] == 0)
+      _cache[num] = cycLen;
    assert(num > 0);
-   return len;}
+   return cycLen;}
 
 
 
@@ -73,7 +92,7 @@ int _getCycLen(int num) {
 * @param j the end of the range, inclusive
 * @return the max cycle length in the range [i, j]
 */
-int collatz_eval (int beg, int end) {
+int collatz_eval (long beg, long end) {
     assert(beg > 0);
     assert(end > 0);
     int max = 1;
@@ -81,9 +100,9 @@ int collatz_eval (int beg, int end) {
        beg ^= end;
        end ^= beg;
        beg ^= end;}
-    int index = beg;
-    for(index = beg; index <= end; ++index) {
+    for(long int index = beg; index <= end; ++index) {
        int cycLen = _getCycLen(index);
+       assert(cycLen > 0);
        if(cycLen > max)
           max = cycLen;}
     assert(max > 0);
@@ -100,7 +119,7 @@ int collatz_eval (int beg, int end) {
 * @param j the end of the range, inclusive
 * @param v the max cycle length
 */
-void collatz_print (std::ostream& w, int i, int j, int v) {
+void collatz_print (std::ostream& w, long int i, long int j, int v) {
     assert(i > 0);
     assert(j > 0);
     assert(v > 0);
@@ -116,8 +135,9 @@ void collatz_print (std::ostream& w, int i, int j, int v) {
 * @param w a std::ostream
 */
 void collatz_solve (std::istream& r, std::ostream& w) {
-    int i;
-    int j;
+    long int i;
+    long int j;
+    _initialize_cache();
     while (collatz_read(r, i, j)) {
         const int v = collatz_eval(i, j);
         collatz_print(w, i, j, v);}}
@@ -128,6 +148,6 @@ void collatz_solve (std::istream& r, std::ostream& w) {
 
 int main () {
     using namespace std;
-    ios_base::sync_with_stdio(false); // turn off synchronization with C I/O
+    ios_base::sync_with_stdio(false);
     collatz_solve(cin, cout);
-    return 0;}
+    return 0; }
