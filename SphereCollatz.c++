@@ -1,15 +1,25 @@
 // --------------------------
-// projects/collatz/Collatz.h
+// robby35us/cs378-collatz/SphereCollatz.c++
 // Copyright (C) 2011
 // Glenn P. Downing and Robert Reed
 // --------------------------
+
+
+// -------
+// defines
+// -------
+
+#ifdef ONLINE_JUDGE
+    #define NDEBUG
+#endif
 
 // --------
 // includes
 // --------
 
 #include <cassert> // assert
-#include <iostream> // endl, istream, ostream
+#include <iostream> // endl, istream, ostream, cin, cout, ios_base
+
 
 // ------------
 // collatz_read
@@ -111,3 +121,13 @@ void collatz_solve (std::istream& r, std::ostream& w) {
     while (collatz_read(r, i, j)) {
         const int v = collatz_eval(i, j);
         collatz_print(w, i, j, v);}}
+
+// ----
+// main
+// ----
+
+int main () {
+    using namespace std;
+    ios_base::sync_with_stdio(false); // turn off synchronization with C I/O
+    collatz_solve(cin, cout);
+    return 0;}
