@@ -41,8 +41,8 @@ struct TestCollatz : CppUnit::TestFixture {
 
     void test_read_1 () {
         std::istringstream r("1 10\n");
-        int i;
-        int j;
+        long int i;
+        long int j;
         const bool b = collatz_read(r, i, j);
         CPPUNIT_ASSERT(b == true);
         CPPUNIT_ASSERT(i == 1);
@@ -50,8 +50,8 @@ struct TestCollatz : CppUnit::TestFixture {
 
     void test_read_2 () {
         std::istringstream r("1    10\n");
-        int i;
-        int j;
+        long int i;
+        long int j;
         const bool b = collatz_read(r, i, j);
         CPPUNIT_ASSERT(b == true);
         CPPUNIT_ASSERT(i == 1);
@@ -60,8 +60,8 @@ struct TestCollatz : CppUnit::TestFixture {
 
     void test_read_3 () {
         std::istringstream r("1 10      \n");
-        int i;
-        int j;
+        long int i;
+        long int j;
         const bool b = collatz_read(r, i, j);
         CPPUNIT_ASSERT(b == true);
         CPPUNIT_ASSERT(i == 1);
@@ -70,12 +70,28 @@ struct TestCollatz : CppUnit::TestFixture {
 
     void test_read_4 () {
         std::istringstream r("900 1000\n");
-        int i;
-        int j;
+        long int i;
+        long int j;
         const bool b = collatz_read(r, i, j);
         CPPUNIT_ASSERT(b == true);
         CPPUNIT_ASSERT(i == 900);
         CPPUNIT_ASSERT(j == 1000);}
+
+    void test_cycLen_1() {
+        int a = _getCycLen(6);
+        CPPUNIT_ASSERT(a == 9);}  
+
+    void test_cycLen_2() {
+        int a = _getCycLen(11);
+        CPPUNIT_ASSERT(a == 15);}  
+
+    void test_cycLen_3() {
+        int a = _getCycLen(27);
+        CPPUNIT_ASSERT(a == 112);}  
+
+    void test_cycLen_4() {
+        int a = _getCycLen(1);
+        CPPUNIT_ASSERT(a == 1);}  
 
 
     // ----
@@ -164,6 +180,10 @@ struct TestCollatz : CppUnit::TestFixture {
     CPPUNIT_TEST(test_read_2);
     CPPUNIT_TEST(test_read_3);
     CPPUNIT_TEST(test_read_4);
+    CPPUNIT_TEST(test_cycLen_1);
+    CPPUNIT_TEST(test_cycLen_2);
+    CPPUNIT_TEST(test_cycLen_3);
+    CPPUNIT_TEST(test_cycLen_4);
     CPPUNIT_TEST(test_eval_1);
     CPPUNIT_TEST(test_eval_2);
     CPPUNIT_TEST(test_eval_3);
