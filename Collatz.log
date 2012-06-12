@@ -1,0 +1,47 @@
+commit 2d46f69b889d438f0f76c5f0feb4e4a8ce700d15
+Author: Robert Reed <callmeelasinthe@gmail.com>
+Date:   Sun Jun 10 12:14:17 2012 -0500
+
+    Completed Documentations: issue#12
+
+commit 1a12085c8c55ab4c03dfcc380d8e973a6300333c
+Author: Robert Reed <callmeelasinthe@gmail.com>
+Date:   Sun Jun 10 02:15:57 2012 -0500
+
+    Updated Unit and Acceptence Tests
+
+commit c6359170c63fbd41362a45f2014c7ac6dd48fc8b
+Author: Robert Reed <callmeelasinthe@gmail.com>
+Date:   Sun Jun 10 01:52:12 2012 -0500
+
+    Updated acceptence tests
+
+commit a9f91e964677abd617770791cf80bab148a4bab2
+Author: Robert Reed <callmeelasinthe@gmail.com>
+Date:   Sun Jun 10 01:43:19 2012 -0500
+
+    Created SphereCollatz.c++
+
+commit 2033f214c12156382b8f124d5b2ccdda5c497f9d
+Author: Robert Reed <callmeelasinthe@gmail.com>
+Date:   Sun Jun 10 01:32:12 2012 -0500
+
+    Version 2 written: issue# 18
+
+commit 48a4bd30e5676572952791212355b0cdd4ba71e8
+Author: Robert Reed <callmeelasinthe@gmail.com>
+Date:   Sat Jun 9 23:11:14 2012 -0500
+
+    First version and tests written: issue#2
+
+commit 8550dfe930aa7f126f206680b428cd4e7db73b15
+Author: robert Reed <callmeelasinthe@gmail.com>
+Date:   Sat Jun 9 20:36:33 2012 -0500
+
+    Got original versions of the files: issue# 1
+
+commit cb109770bd7aaff1196577bb01f70fc07d1353b7
+Author: robby35us <callmeelasinthe@gmail.com>
+Date:   Sat Jun 9 17:46:56 2012 -0700
+
+    Initial commit
